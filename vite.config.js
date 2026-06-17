@@ -5,6 +5,11 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
+    // Force UTF-8 charset to preserve Portuguese accents in minified output
+    target: 'esnext',
+  },
+  esbuild: {
+    charset: 'utf8',
   },
   server: {
     port: 3000,
