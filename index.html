@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS - Painel de Proposta Comercial</title>
+  <!-- Google Fonts for premium typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="dark-theme">
+  <div class="app-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="./logo.png" alt="NEXUS Gestão Inteligente" class="logo-img">
+      </div>
+      
+      <nav class="nav-menu" role="tablist" aria-label="Navegação da proposta">
+        <a href="#visao-geral" class="nav-item active" role="tab" aria-selected="true" aria-controls="visao-geral" id="tab-visao-geral" data-target="visao-geral">
+          <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+          Visão Geral
+        </a>
+        <a href="#desafios" class="nav-item" role="tab" aria-selected="false" aria-controls="desafios" id="tab-desafios" data-target="desafios">
+          <svg class="nav-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          Desafios & Solução
+        </a>
+        <a href="#modulos" class="nav-item" role="tab" aria-selected="false" aria-controls="modulos" id="tab-modulos" data-target="modulos">
+          <svg class="nav-icon" viewBox="0 0 24 24"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>
+          Módulos
+        </a>
+        <a href="#powerbi" class="nav-item" role="tab" aria-selected="false" aria-controls="powerbi" id="tab-powerbi" data-target="powerbi">
+          <svg class="nav-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+          Simulador Power BI
+        </a>
+        <a href="#roi" class="nav-item" role="tab" aria-selected="false" aria-controls="roi" id="tab-roi" data-target="roi">
+          <svg class="nav-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
+          Retorno e ROI
+        </a>
+        <a href="#cronograma" class="nav-item" role="tab" aria-selected="false" aria-controls="cronograma" id="tab-cronograma" data-target="cronograma">
+          <svg class="nav-icon" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
+          Cronograma
+        </a>
+        <a href="#investimento" class="nav-item" role="tab" aria-selected="false" aria-controls="investimento" id="tab-investimento" data-target="investimento">
+          <svg class="nav-icon" viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+          Investimento
+        </a>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="client-badge">
+          <span class="client-label">PROPOSTA PARA</span>
+          <span class="client-name">Shopping Lago Center</span>
+        </div>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop"></div>
+    
+    <!-- Main Content Wrapper -->
+    <main class="content-wrapper">
+      
+      <!-- Top Bar Header -->
+      <header class="top-bar">
+        <div class="header-left">
+          <h1 class="section-title-display">Visão Geral</h1>
+          <p class="section-subtitle-display">Plataforma Inteligente de Gestão Operacional</p>
+        </div>
+        <div class="header-right">
+          <div class="status-badge pending">
+            <span class="status-pulse"></span>
+            <span class="status-text">Aguardando Aprovação</span>
+          </div>
+          <button class="btn btn-primary btn-accept-proposal">
+            <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+            Aprovar Proposta
+          </button>
+        </div>
+      </header>
+      
+      <!-- Content View Area -->
+      <div class="view-container">
+        
+        <!-- SECTION 1: VISÃO GERAL -->
+        <section id="visao-geral" class="content-section active" role="tabpanel" aria-labelledby="tab-visao-geral" tabindex="0">
+          <div class="hero-card glass-panel">
+            <div class="hero-content">
+              <span class="badge">NEXUS GESTÃO INTELIGENTE</span>
+              <h2>Transformação Digital das Operações</h2>
+              <p>O NEXUS Gestão Inteligente é uma plataforma corporativa de alto impacto desenvolvida especificamente para centralizar, automatizar e padronizar toda a gestão operacional do Shopping Lago Center. Chega de processos dispersos e decisões sem dados.</p>
+              <div class="hero-stats">
+                <div class="stat-box">
+                  <span class="stat-num">100%</span>
+                  <span class="stat-desc">OS Digitais</span>
+                </div>
+                <div class="stat-box">
+                  <span class="stat-num">-30%</span>
+                  <span class="stat-desc">Tempo de Reparo (MTTR)</span>
+                </div>
+                <div class="stat-box">
+                  <span class="stat-num">+25%</span>
+                  <span class="stat-desc">Produtividade da Equipe</span>
+                </div>
+              </div>
+            </div>
+            <div class="hero-decor">
+              <div class="orb"></div>
+            </div>
+          </div>
+          
+          <h3 class="subsection-title">Resultados Operacionais Esperados</h3>
+          <div class="table-container glass-panel">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Indicador de Performance</th>
+                  <th>Situação Atual</th>
+                  <th>Meta com NEXUS</th>
+                  <th>Impacto Estratégico</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="bold-text">Controle de Ordens de Serviço (OS)</td>
+                  <td><span class="status-tag bad">Manual e descentralizado</span></td>
+                  <td><span class="status-tag good">100% Digital via Plataforma</span></td>
+                  <td>Fim do retrabalho e rastreabilidade total</td>
+                </tr>
+                <tr>
+                  <td class="bold-text">Tempo Médio de Atendimento (MTTR)</td>
+                  <td><span class="status-tag bad">Não mensurado / lento</span></td>
+                  <td><span class="status-tag good">Redução de 30% garantida</span></td>
+                  <td>Menos tempo com ativos parados no shopping</td>
+                </tr>
+                <tr>
+                  <td class="bold-text">Produtividade Geral da Equipe</td>
+                  <td><span class="status-tag bad">Sem indicadores de HH</span></td>
+                  <td><span class="status-tag good">Aumento de 25% na operação</span></td>
+                  <td>Gestão inteligente de Horas/Homem (HH)</td>
+                </tr>
+                <tr>
+                  <td class="bold-text">Controle do Almoxarifado</td>
+                  <td><span class="status-tag bad">Reativo / Planilhas</span></td>
+                  <td><span class="status-tag good">Monitoramento em Tempo Real</span></td>
+                  <td>Estoques otimizados e fim do desabastecimento</td>
+                </tr>
+                <tr>
+                  <td class="bold-text">Auditorias, POPs e Checklists</td>
+                  <td><span class="status-tag bad">Impressos e preenchidos à mão</span></td>
+                  <td><span class="status-tag good">Automatizados via app/tablet</span></td>
+                  <td>Padronização absoluta e conformidade assegurada</td>
+                </tr>
+                <tr>
+                  <td class="bold-text">Rastreabilidade Operacional</td>
+                  <td><span class="status-tag bad">Parcial / Sem histórico sólido</span></td>
+                  <td><span class="status-tag good">Registro completo e permanente</span></td>
+                  <td>Segurança jurídica e governança corporativa</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        <!-- SECTION 2: DESAFIOS & SOLUÇÃO -->
+        <section id="desafios" class="content-section" role="tabpanel" aria-labelledby="tab-desafios" tabindex="0">
+          <div class="two-column-layout">
+            <div class="glass-panel">
+              <h3 class="card-title text-accent">Os Desafios do Cenário Atual</h3>
+              <p class="margin-bottom">Operar um shopping de grande porte como o Lago Center utilizando métodos tradicionais e planilhas descentralizadas gera vulnerabilidades operacionais graves.</p>
+              
+              <ul class="challenges-list">
+                <li>
+                  <svg class="list-icon-bad" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                  <div>
+                    <strong>Processos Descentralizados:</strong> Cada setor opera em "silos" isolados, dificultando a sinergia.
+                  </div>
+                </li>
+                <li>
+                  <svg class="list-icon-bad" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                  <div>
+                    <strong>Ausência de BI Gerencial:</strong> A diretoria não tem visibilidade rápida de custos e eficiência para tomar decisões.
+                  </div>
+                </li>
+                <li>
+                  <svg class="list-icon-bad" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                  <div>
+                    <strong>Falta de Histórico dos Ativos:</strong> Dificuldade de rastrear preventivas e corretivas de equipamentos de alto custo (ar condicionado, subestações).
+                  </div>
+                </li>
+                <li>
+                  <svg class="list-icon-bad" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                  <div>
+                    <strong>Controle Limitado de Estoque:</strong> Materiais críticos com compras reativas, gerando atrasos em corretivas.
+                  </div>
+                </li>
+                <li>
+                  <svg class="list-icon-bad" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                  <div>
+                    <strong>Insegurança Jurídica:</strong> Falta de evidências rápidas em auditorias e vistorias manuais.
+                  </div>
+                </li>
+              </ul>
+            </div>
+            
+            <div class="glass-panel text-center">
+              <h3 class="card-title text-accent">A Solução: Ecossistema Integrado NEXUS</h3>
+              <p class="margin-bottom text-left">Centralização de dados desde o chão de fábrica até o Power BI corporativo para a Diretoria do Shopping Lago Center.</p>
+              
+              <!-- Interactive Architecture Diagram -->
+              <div class="architecture-diagram">
+                <div class="diagram-node main-node">
+                  <div class="node-icon">
+                    <img src="./logo.png" alt="NEXUS" class="node-logo">
+                  </div>
+                  <span>PLATAFORMA NEXUS</span>
+                </div>
+                
+                <div class="diagram-connections">
+                  <div class="connection-line c-manut"><span><span class="desktop-text">MANUTENÇÃO</span><span class="mobile-text">MANUT.</span></span></div>
+                  <div class="connection-line c-limpeza"><span>LIMPEZA</span></div>
+                  <div class="connection-line c-seguranca"><span>SEGURANÇA</span></div>
+                  <div class="connection-line c-almox"><span><span class="desktop-text">ALMOXARIFADO</span><span class="mobile-text">ALMOX.</span></span></div>
+                </div>
+                
+                <div class="diagram-bi-connector">
+                  <div class="arrow-down"></div>
+                  <div class="bi-badge">POWER BI INTEGRADO</div>
+                  <div class="arrow-down"></div>
+                </div>
+                
+                <div class="diagram-node target-node">
+                  <span>DIRETORIA DO SHOPPING</span>
+                  <small>Decisões baseadas em indicadores reais</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Comparative Market Table -->
+          <div class="comparison-block" style="margin-top: 40px;">
+            <h3 class="subsection-title">Diferenciais e Comparativo de Mercado</h3>
+            <p class="margin-bottom-sm">Veja como o NEXUS se destaca frente às principais plataformas de mercado, oferecendo uma solução sob medida para a operação do Shopping Lago Center.</p>
+            <div class="table-container glass-panel">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Funcionalidade / Diferencial</th>
+                    <th style="color: var(--color-brand-pastel); font-weight: 800; border-bottom: 2px solid var(--color-brand-medium);">NEXUS</th>
+                    <th>SOFMAN</th>
+                    <th>ENGEMAN</th>
+                    <th>AUVO</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="bold-text">Personalização</td>
+                    <td style="color: var(--text-good); font-weight: 700;">✅ Sim</td>
+                    <td>Parcial</td>
+                    <td>Parcial</td>
+                    <td>Não</td>
+                  </tr>
+                  <tr>
+                    <td class="bold-text">BI Executivo (Power BI)</td>
+                    <td style="color: var(--text-good); font-weight: 700;">✅ Sim</td>
+                    <td>Sim</td>
+                    <td>Parcial</td>
+                    <td>Não</td>
+                  </tr>
+                  <tr>
+                    <td class="bold-text">Controle de HH (Homem/Hora)</td>
+                    <td style="color: var(--text-good); font-weight: 700;">✅ Sim</td>
+                    <td>Sim</td>
+                    <td>Sim</td>
+                    <td>Parcial</td>
+                  </tr>
+                  <tr>
+                    <td class="bold-text">POP Digital</td>
+                    <td style="color: var(--text-good); font-weight: 700;">✅ Sim</td>
+                    <td>Parcial</td>
+                    <td>Não</td>
+                    <td>Não</td>
+                  </tr>
+                  <tr>
+                    <td class="bold-text">Operação voltada a Shopping</td>
+                    <td style="color: var(--text-good); font-weight: 700;">✅ Sim</td>
+                    <td>Não</td>
+                    <td>Não</td>
+                    <td>Não</td>
+                  </tr>
+                  <tr>
+                    <td class="bold-text">Evolução Contínua</td>
+                    <td style="color: var(--text-good); font-weight: 700;">✅ Sim</td>
+                    <td>Limitado</td>
+                    <td>Limitado</td>
+                    <td>Limitado</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+        
+        <!-- SECTION 3: MÓDULOS DA PLATAFORMA -->
+        <section id="modulos" class="content-section" role="tabpanel" aria-labelledby="tab-modulos" tabindex="0">
+          <!-- Modular Explorer Sub-Navigation -->
+          <div class="tab-navigation" role="tablist" aria-label="Módulos Operacionais">
+            <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="mod-manutencao" id="tab-mod-manutencao" data-tab="mod-manutencao">Manutenção</button>
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="mod-limpeza" id="tab-mod-limpeza" data-tab="mod-limpeza">Limpeza</button>
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="mod-seguranca" id="tab-mod-seguranca" data-tab="mod-seguranca">Segurança</button>
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="mod-almoxarifado" id="tab-mod-almoxarifado" data-tab="mod-almoxarifado">Almoxarifado</button>
+          </div>
+          
+          <div class="tab-content-area">
+            <!-- TAB 1: MANUTENÇÃO -->
+            <div id="mod-manutencao" class="tab-pane active" role="tabpanel" aria-labelledby="tab-mod-manutencao" tabindex="0">
+              <div class="two-column-layout">
+                <div class="tab-pane-info">
+                  <h3>Módulo de Manutenção</h3>
+                  <p class="margin-bottom">Gerencie a saúde dos ativos de engenharia crítica do shopping, como chillers, elevadores, cabines de energia e iluminação.</p>
+                  
+                  <div class="features-grid">
+                    <div class="feature-tag">✔ Preventiva Automatizada</div>
+                    <div class="feature-tag">✔ Corretiva com Geolocalização</div>
+                    <div class="feature-tag">✔ Análise Preditiva</div>
+                    <div class="feature-tag">✔ Gestão Completa de Ativos</div>
+                    <div class="feature-tag">✔ Controle de Horas Trabalhadas (HH)</div>
+                    <div class="feature-tag">✔ Medição de MTTR & MTBF</div>
+                    <div class="feature-tag">✔ Alertas de SLA Estourado</div>
+                    <div class="feature-tag">✔ Registro de Histórico Digital</div>
+                  </div>
+                </div>
+                <div class="tab-pane-visual">
+                  <div class="visual-card">
+                    <div class="visual-card-header">
+                      <span>ORDEM DE SERVIÇO #4819</span>
+                      <span class="status-indicator-active">Em Andamento</span>
+                    </div>
+                    <div class="visual-card-body">
+                      <p><strong>Ativo:</strong> Chiller Central de Ar Condicionado (Setor Sul)</p>
+                      <p><strong>Tipo:</strong> Preventiva Bimestral (POP-AC-02)</p>
+                      <div class="progress-bar-container">
+                        <div class="progress-bar-fill" style="width: 75%;"></div>
+                      </div>
+                      <div class="visual-card-footer">
+                        <span>Técnico: Roberto Silva</span>
+                        <span>Tempo: 45m</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- TAB 2: LIMPEZA -->
+            <div id="mod-limpeza" class="tab-pane" role="tabpanel" aria-labelledby="tab-mod-limpeza" tabindex="0">
+              <div class="two-column-layout">
+                <div class="tab-pane-info">
+                  <h3>Módulo de Limpeza</h3>
+                  <p class="margin-bottom">Controle absoluto sobre a higienização das áreas comuns, banheiros e praça de alimentação, garantindo o conforto do cliente.</p>
+                  
+                  <div class="features-grid">
+                    <div class="feature-tag">✔ Rondas de Limpeza Periódicas</div>
+                    <div class="feature-tag">✔ POPs Digitais Passo a Passo</div>
+                    <div class="feature-tag">✔ Checklists com Evidência de Foto</div>
+                    <div class="feature-tag">✔ Gestão de Escalas e Plantões</div>
+                    <div class="feature-tag">✔ Alertas de Higienização Pendente</div>
+                    <div class="feature-tag">✔ Controle de Produtividade da Equipe</div>
+                  </div>
+                </div>
+                <div class="tab-pane-visual">
+                  <div class="visual-card">
+                    <div class="visual-card-header">
+                      <span>CHECKLIST DE BANHEIRO</span>
+                      <span class="status-indicator-completed">Concluído</span>
+                    </div>
+                    <div class="visual-card-body">
+                      <p><strong>Setor:</strong> Banheiros Piso L1 (Próximo à Praça)</p>
+                      <p><strong>Inspeção:</strong> Sabão, Toalhas de Papel, Limpeza Geral</p>
+                      <div class="checklist-items">
+                        <div class="item checked">✓ Reposição de insumos realizada</div>
+                        <div class="item checked">✓ Limpeza do piso e espelhos concluída</div>
+                        <div class="item checked">✓ Evidência fotográfica anexada</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- TAB 3: SEGURANÇA -->
+            <div id="mod-seguranca" class="tab-pane" role="tabpanel" aria-labelledby="tab-mod-seguranca" tabindex="0">
+              <div class="two-column-layout">
+                <div class="tab-pane-info">
+                  <h3>Módulo de Segurança</h3>
+                  <p class="margin-bottom">Rastreie ocorrências em tempo real, registre não conformidades de lojistas e acompanhe rondas preventivas na planta do shopping.</p>
+                  
+                  <div class="features-grid">
+                    <div class="feature-tag">✔ Registro Instantâneo de Ocorrências</div>
+                    <div class="feature-tag">✔ Rondas de Segurança Digitais</div>
+                    <div class="feature-tag">✔ Fiscalização de Não Conformidades</div>
+                    <div class="feature-tag">✔ Upload de Fotos como Provas</div>
+                    <div class="feature-tag">✔ Alertas de Pânico/Emergência</div>
+                    <div class="feature-tag">✔ Relatórios de Segurança Automatizados</div>
+                  </div>
+                </div>
+                <div class="tab-pane-visual">
+                  <div class="visual-card">
+                    <div class="visual-card-header">
+                      <span>OCORRÊNCIA #092</span>
+                      <span class="status-indicator-resolved">Resolvido</span>
+                    </div>
+                    <div class="visual-card-body">
+                      <p><strong>Descrição:</strong> Obstrução em saída de emergência (Lojas A12)</p>
+                      <p><strong>Ação:</strong> Notificação emitida ao lojista, desobstrução imediata do local.</p>
+                      <p><strong>Auditoria:</strong> Rastreabilidade registrada no sistema.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- TAB 4: ALMOXARIFADO -->
+            <div id="mod-almoxarifado" class="tab-pane" role="tabpanel" aria-labelledby="tab-mod-almoxarifado" tabindex="0">
+              <div class="two-column-layout">
+                <div class="tab-pane-info">
+                  <h3>Módulo de Almoxarifado</h3>
+                  <p class="margin-bottom">Monitore e otimize o estoque de peças de reposição e materiais de consumo geral usados em todas as operações.</p>
+                  
+                  <div class="features-grid">
+                    <div class="feature-tag">✔ Registro Digital de Entrada e Saída</div>
+                    <div class="feature-tag">✔ Ponto de Pedido (Estoque Mínimo)</div>
+                    <div class="feature-tag">✔ Análise de Curva ABC de Insumos</div>
+                    <div class="feature-tag">✔ Inventários Periódicos Rápidos</div>
+                    <div class="feature-tag">✔ Alocação de Custos por Equipamento</div>
+                    <div class="feature-tag">✔ Alertas Automáticos de Reabastecimento</div>
+                  </div>
+                </div>
+                <div class="tab-pane-visual">
+                  <div class="visual-card">
+                    <div class="visual-card-header">
+                      <span>ESTOQUE DE LÂMPADAS LED 12W</span>
+                      <span class="status-indicator-warning">Atenção</span>
+                    </div>
+                    <div class="visual-card-body">
+                      <p><strong>Saldo Atual:</strong> 15 unidades</p>
+                      <p><strong>Estoque Mínimo:</strong> 30 unidades</p>
+                      <div class="warning-box">
+                        ⚠️ Alerta gerado: Ponto de ressuprimento atingido. Sugestão de compra de 50 unidades.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- SECTION 4: SIMULADOR POWER BI -->
+        <section id="powerbi" class="content-section" role="tabpanel" aria-labelledby="tab-powerbi" tabindex="0">
+          <div class="dashboard-controls-header">
+            <h3>Visualização Executiva (Power BI Integrado)</h3>
+            <p>Demonstrativo simulado dos dados que serão enviados diretamente para a Diretoria do Shopping Lago Center.</p>
+          </div>
+          
+          <!-- Key Metrics Grid -->
+          <div class="metrics-grid">
+            <div class="metric-card glass-panel text-center">
+              <span class="metric-value text-purple" id="bi-disponibilidade">98.4%</span>
+              <span class="metric-label">Disponibilidade dos Ativos</span>
+            </div>
+            <div class="metric-card glass-panel text-center">
+              <span class="metric-value text-purple" id="bi-mttr">2.8h</span>
+              <span class="metric-label">MTTR (Tempo Médio de Reparo)</span>
+            </div>
+            <div class="metric-card glass-panel text-center">
+              <span class="metric-value text-purple" id="bi-sla">97.2%</span>
+              <span class="metric-label">Conformidade do SLA</span>
+            </div>
+            <div class="metric-card glass-panel text-center">
+              <span class="metric-value text-purple" id="bi-backlog">14</span>
+              <span class="metric-label">OS em Aberto (Backlog)</span>
+            </div>
+          </div>
+          
+          <!-- Charts Layout -->
+          <div class="charts-layout">
+            <div class="chart-container glass-panel">
+              <h4 class="chart-title">Distribuição de Custos por Setor (Mensal)</h4>
+              <div class="chart-wrapper">
+                <canvas id="costsChart"></canvas>
+              </div>
+            </div>
+            
+            <div class="chart-container glass-panel">
+              <h4 class="chart-title">Acompanhamento de OS Abertas vs. Fechadas</h4>
+              <div class="chart-wrapper">
+                <canvas id="osRatioChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- SECTION 5: RETORNO & ROI -->
+        <section id="roi" class="content-section" role="tabpanel" aria-labelledby="tab-roi" tabindex="0">
+          <div class="two-column-layout">
+            <!-- ROI Benefits Card -->
+            <div class="glass-panel">
+              <h3 class="card-title text-accent">Ganhos Operacionais & Financeiros</h3>
+              <p class="margin-bottom">A implementação do NEXUS Facilities resulta em economia financeira direta através de aumento de produtividade e otimização de compras.</p>
+              
+              <div class="financial-bullets">
+                <div class="bullet-item">
+                  <div class="bullet-icon">💵</div>
+                  <div class="bullet-text">
+                    <strong>10% a 15% de economia em materiais:</strong> Comprando no momento certo e mantendo estoque controlado via Almoxarifado Inteligente.
+                  </div>
+                </div>
+                <div class="bullet-item">
+                  <div class="bullet-icon">🔄</div>
+                  <div class="bullet-text">
+                    <strong>15% a 30% de redução em retrabalho:</strong> Equipes orientadas por POPs digitais claros no smartphone reduzem erros de execução.
+                  </div>
+                </div>
+                <div class="bullet-item">
+                  <div class="bullet-icon">⏱️</div>
+                  <div class="bullet-text">
+                    <strong>20% de ganho de tempo administrativo:</strong> Relatórios digitais instantâneos eliminam digitação de fichas de papel.
+                  </div>
+                </div>
+                <div class="bullet-item">
+                  <div class="bullet-icon">⚙️</div>
+                  <div class="bullet-text">
+                    <strong>Aumento da vida útil dos ativos:</strong> Prevenção adequada de quebras inesperadas em chillers e equipamentos caros.
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- ROI Calculator Box -->
+            <div class="glass-panel calculator-panel">
+              <h3 class="card-title text-accent">Calculadora de ROI Personalizada</h3>
+              <p class="margin-bottom-sm">Digite o gasto mensal aproximado do shopping com equipe operacional e materiais de facilities para simular o retorno.</p>
+              
+              <div class="form-group">
+                <label for="monthly-cost-input">Custo Mensal com Operação de Facilities (R$):</label>
+                <div class="input-prefix-wrapper">
+                  <span class="prefix">R$</span>
+                  <input type="number" id="monthly-cost-input" class="form-input" value="150000" min="5000" step="5000">
+                </div>
+              </div>
+              
+              <div class="calc-results">
+                <div class="calc-result-row">
+                  <span>Economia Anual Potencial (Estimada):</span>
+                  <span class="calc-value text-good" id="calc-savings">R$ 45.000,00</span>
+                </div>
+                <div class="calc-result-row">
+                  <span>Investimento Anual NEXUS (Total):</span>
+                  <span class="calc-value text-purple">R$ 20.500,00</span>
+                </div>
+                <div class="calc-result-row border-top">
+                  <span>Retorno Anual Líquido:</span>
+                  <span class="calc-value text-good bold-text" id="calc-net-return">R$ 24.500,00</span>
+                </div>
+                <div class="calc-result-row">
+                  <span>ROI Estimado:</span>
+                  <span class="calc-value text-highlight font-large bold-text" id="calc-roi">119.5%</span>
+                </div>
+              </div>
+              <p class="calc-note">*Estimativa baseada em melhorias reais de 15% a 30% em custos operacionais e administrativos com base em benchmarks do mercado.</p>
+            </div>
+          </div>
+        </section>
+        
+        <!-- SECTION 6: CRONOGRAMA -->
+        <section id="cronograma" class="content-section" role="tabpanel" aria-labelledby="tab-cronograma" tabindex="0">
+          <div class="timeline-header">
+            <h3>Cronograma de Implantação</h3>
+            <p>Garantia de uma transição suave e implantação operacional completa em apenas 6 semanas.</p>
+          </div>
+          
+          <!-- Timeline Component -->
+          <div class="timeline">
+            <div class="timeline-step">
+              <div class="step-num">01</div>
+              <div class="step-content glass-panel">
+                <h4>Semana 1: Levantamento Geral</h4>
+                <p>Auditoria operacional, mapeamento de ativos críticos e definição de fluxos de aprovação.</p>
+              </div>
+            </div>
+            
+            <div class="timeline-step">
+              <div class="step-num">02</div>
+              <div class="step-content glass-panel">
+                <h4>Semana 2: Estruturação Inicial</h4>
+                <p>Cadastro de equipamentos no banco de dados e configuração de níveis de acesso.</p>
+              </div>
+            </div>
+            
+            <div class="timeline-step">
+              <div class="step-num">03</div>
+              <div class="step-content glass-panel">
+                <h4>Semana 3: Configurações e POPs</h4>
+                <p>Carregamento de Procedimentos Operacionais Padrão (POPs) e criação de checklists digitais.</p>
+              </div>
+            </div>
+            
+            <div class="timeline-step">
+              <div class="step-num">04</div>
+              <div class="step-content glass-panel">
+                <h4>Semana 4: Teste e Homologação</h4>
+                <p>Uso prático em campo com equipe piloto do shopping e ajustes de processos.</p>
+              </div>
+            </div>
+            
+            <div class="timeline-step">
+              <div class="step-num">05</div>
+              <div class="step-content glass-panel">
+                <h4>Semana 5: Treinamento Integrado</h4>
+                <p>Capacitação de técnicos, prestadores de serviços, gestores e lojistas.</p>
+              </div>
+            </div>
+            
+            <div class="timeline-step">
+              <div class="step-num">06</div>
+              <div class="step-content glass-panel">
+                <h4>Semana 6: Go Live Oficial</h4>
+                <p>Lançamento oficial da plataforma em toda a operação do Shopping Lago Center.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Future Vision Banner -->
+          <div class="future-vision-panel glass-panel">
+            <div class="badge">FASE 2 (EVOLUÇÃO)</div>
+            <h4>Visão Futura e Inovação</h4>
+            <p>Após a estabilização da Fase 1, o ecossistema NEXUS está pronto para expandir com ferramentas de ponta:</p>
+            <div class="future-tags">
+              <span>🤖 Inteligência Artificial</span>
+              <span>📷 Reconhecimento de Imagens</span>
+              <span>📲 Aplicativo Mobile Completo</span>
+              <span>🔍 QR Codes em Ativos</span>
+              <span>⚡ Medição de Energia Digital</span>
+              <span>🌡️ Sensores de IoT</span>
+              <span>📈 Preditiva de Quebras</span>
+            </div>
+          </div>
+        </section>
+        
+        <!-- SECTION 7: INVESTIMENTO -->
+        <section id="investimento" class="content-section" role="tabpanel" aria-labelledby="tab-investimento" tabindex="0">
+          <div class="pricing-header">
+            <h3>Investimento e Contratação</h3>
+            <p>Transparência total, sem pegadinhas ou custos ocultos de implantação.</p>
+          </div>
+          
+          <div class="pricing-cards">
+            <!-- Card 1: Setup -->
+            <div class="pricing-card glass-panel">
+              <span class="card-badge">Único</span>
+              <h4>Implantação e Setup</h4>
+              <div class="price">
+                <span class="currency">R$</span>
+                <span class="amount">2.500</span>
+                <span class="cents">,00</span>
+              </div>
+              <p class="description">Estruturação de dados, parametrização e treinamento completo.</p>
+              
+              <ul class="pricing-benefits">
+                <li>✓ Modelagem dos ativos do shopping</li>
+                <li>✓ Configuração de POPs e checklists</li>
+                <li>✓ Carga de dados iniciais</li>
+                <li>✓ Integração com o Power BI</li>
+                <li>✓ Treinamento da equipe de campo</li>
+              </ul>
+              
+              <div class="pricing-terms">
+                <span>Condições: 50% no início e 50% na entrega final.</span>
+              </div>
+            </div>
+            
+            <!-- Card 2: Recurring -->
+            <div class="pricing-card glass-panel popular">
+              <span class="card-badge highlight">Assinatura</span>
+              <h4>Serviço Contínuo (SaaS)</h4>
+              <div class="price">
+                <span class="currency">R$</span>
+                <span class="amount">1.500</span>
+                <span class="cents">,00</span>
+                <span class="period">/mês</span>
+              </div>
+              <p class="description">Hospedagem, suporte dedicado e evolução de software inclusos.</p>
+              
+              <ul class="pricing-benefits">
+                <li>✓ Licenças de uso ilimitadas</li>
+                <li>✓ Hospedagem em nuvem de alta segurança</li>
+                <li>✓ Backup automático de dados</li>
+                <li>✓ Suporte técnico especializado por WhatsApp e e-mail</li>
+                <li>✓ Atualizações de segurança gratuitas</li>
+                <li>✓ Melhorias contínuas incluídas na mensalidade</li>
+              </ul>
+              
+              <div class="pricing-terms">
+                <span>Cancelamento flexível sem multas abusivas.</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="closing-actions text-center">
+            <h3>Vamos iniciar a transformação digital do Shopping Lago Center?</h3>
+            <p class="margin-bottom">Ao aprovar esta proposta, iniciamos os levantamentos técnicos e a estruturação na próxima semana.</p>
+            <button class="btn btn-primary btn-large btn-accept-proposal">
+              <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+              Aceitar Proposta & Iniciar Setup
+            </button>
+          </div>
+        </section>
+        
+      </div>
+    </main>
+    
+  </div>
+  
+  <!-- PROPOSAL ACCEPTANCE MODAL -->
+  <div class="modal-overlay" id="accept-modal">
+    <div class="modal-card glass-panel">
+      <button class="modal-close-btn" aria-label="Fechar">&times;</button>
+      <div class="modal-icon">🎉</div>
+      <h2>Proposta Comercial Aceita!</h2>
+      <p>Parabéns! Você acaba de dar o passo inicial para levar a gestão operacional do <strong>Shopping Lago Center</strong> ao nível máximo de eficiência digital e controle.</p>
+      
+      <div class="receipt-box">
+        <h3>Resumo do Aceite</h3>
+        <div class="receipt-row">
+          <span>Serviço:</span>
+          <strong>NEXUS Gestão Inteligente</strong>
+        </div>
+        <div class="receipt-row">
+          <span>Cliente:</span>
+          <strong>Shopping Lago Center</strong>
+        </div>
+        <div class="receipt-row">
+          <span>Setup Inicial:</span>
+          <strong>R$ 2.500,00</strong>
+        </div>
+        <div class="receipt-row">
+          <span>Mensalidade:</span>
+          <strong>R$ 1.500,00 / mês</strong>
+        </div>
+        <div class="receipt-row">
+          <span>Cronograma Estimado:</span>
+          <strong>6 Semanas (Levantamento na Semana 1)</strong>
+        </div>
+        <div class="receipt-row border-top">
+          <span>Status do Aceite:</span>
+          <span class="status-tag good">Aprovado Eletronicamente</span>
+        </div>
+      </div>
+      
+      <p class="modal-subtext">Nossa equipe entrará em contato nas próximas 24 horas para agendar a reunião de Kickoff e levantar as informações dos ativos.</p>
+      <button class="btn btn-secondary btn-close-modal">Fechar Painel</button>
+    </div>
+  </div>
+  
+  <!-- Mobile Bottom Navigation Bar (Interactive Menu) -->
+  <nav class="menu mobile-nav" role="navigation" aria-label="Navegação móvel">
+    <button class="menu__item active" data-target="geral" aria-selected="true">
+      <div class="menu__icon">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <strong class="menu__text active">Geral</strong>
+    </button>
+    <button class="menu__item" data-target="modulos" aria-selected="false">
+      <div class="menu__icon">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+      </div>
+      <strong class="menu__text">modulos</strong>
+    </button>
+    <button class="menu__item" data-target="graficos" aria-selected="false">
+      <div class="menu__icon">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      </div>
+      <strong class="menu__text">Graficos</strong>
+    </button>
+    <button class="menu__item" data-target="periodo" aria-selected="false">
+      <div class="menu__icon">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <strong class="menu__text">Periodo</strong>
+    </button>
+    <button class="menu__item" data-target="investimento" aria-selected="false">
+      <div class="menu__icon">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4Z"/></svg>
+      </div>
+      <strong class="menu__text">Investimento</strong>
+    </button>
+  </nav>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
