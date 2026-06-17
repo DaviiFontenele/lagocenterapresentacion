@@ -13,95 +13,127 @@ const formatCurrency = (value) => {
   }).format(value);
 };
 
-// 1. Navigation Controller (Tabs & Section Switching)
+// 1. Unified Navigation Controller
+// Maps desktop sidebar IDs to mobile bottom nav targets and vice-versa
+const SECTION_META = {
+  'visao-geral': {
+    title: 'Visão Geral',
+    subtitle: 'Plataforma Inteligente de Gestão Operacional',
+    mobileGroup: 'geral'
+  },
+  'desafios': {
+    title: 'Desafios & Solução',
+    subtitle: 'Ecossistema Integrado NEXUS',
+    mobileGroup: 'geral'
+  },
+  'modulos': {
+    title: 'Módulos da Plataforma',
+    subtitle: 'Explorando os Módulos do Sistema',
+    mobileGroup: 'modulos'
+  },
+  'powerbi': {
+    title: 'Simulador Power BI',
+    subtitle: 'Acompanhamento Executivo em Tempo Real',
+    mobileGroup: 'graficos'
+  },
+  'roi': {
+    title: 'Retorno e ROI',
+    subtitle: 'Viabilidade Financeira e Ganhos Anuais',
+    mobileGroup: 'periodo'
+  },
+  'cronograma': {
+    title: 'Cronograma',
+    subtitle: 'Plano de Implantação e Futuro',
+    mobileGroup: 'periodo'
+  },
+  'investimento': {
+    title: 'Investimento',
+    subtitle: 'Valores e Contratação do Serviço',
+    mobileGroup: 'investimento'
+  }
+};
+
+// Mobile group → which sidebar section to highlight as active
+const MOBILE_GROUP_PRIMARY_SECTION = {
+  'geral': 'visao-geral',
+  'modulos': 'modulos',
+  'graficos': 'powerbi',
+  'periodo': 'roi',
+  'investimento': 'investimento'
+};
+
+// Mobile group → section IDs to show
+const MOBILE_GROUP_SECTIONS = {
+  'geral': ['visao-geral', 'desafios'],
+  'modulos': ['modulos'],
+  'graficos': ['powerbi'],
+  'periodo': ['roi', 'cronograma'],
+  'investimento': ['investimento']
+};
+
+// Core navigation: show one or more sections, hide the rest
+// sectionIds = array of section IDs to show
+const showSections = (sectionIds) => {
+  const allSections = document.querySelectorAll('.content-section');
+  allSections.forEach(sec => {
+    const shouldShow = sectionIds.includes(sec.id);
+    // Always clear any inline display/opacity so CSS + class can take over
+    sec.style.removeProperty('display');
+    sec.style.removeProperty('opacity');
+    if (shouldShow) {
+      sec.classList.add('active');
+      animate(
+        sec,
+        { opacity: [0, 1], y: [10, 0] },
+        { duration: 0.4, easing: 'ease-out' }
+      );
+    } else {
+      sec.classList.remove('active');
+    }
+  });
+
+  // Re-render charts when Power BI section is shown
+  if (sectionIds.includes('powerbi')) {
+    renderCharts();
+  }
+
+  // Scroll to top
+  const wrapper = document.querySelector('.content-wrapper');
+  if (wrapper) wrapper.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
 const initNavigation = () => {
   const navItems = document.querySelectorAll('.nav-item');
-  const sections = document.querySelectorAll('.content-section');
   const sectionTitleDisplay = document.querySelector('.section-title-display');
   const sectionSubtitleDisplay = document.querySelector('.section-subtitle-display');
-
-  const sectionHeaders = {
-    'visao-geral': {
-      title: 'Visão Geral',
-      subtitle: 'Plataforma Inteligente de Gestão Operacional'
-    },
-    'desafios': {
-      title: 'Desafios & Solução',
-      subtitle: 'Ecossistema Integrado NEXUS'
-    },
-    'modulos': {
-      title: 'Módulos da Plataforma',
-      subtitle: 'Explorando os Módulos do Sistema'
-    },
-    'powerbi': {
-      title: 'Simulador Power BI',
-      subtitle: 'Acompanhamento Executivo em Tempo Real'
-    },
-    'roi': {
-      title: 'Retorno e ROI',
-      subtitle: 'Viabilidade Financeira e Ganhos Anuais'
-    },
-    'cronograma': {
-      title: 'Cronograma',
-      subtitle: 'Plano de Implantação e Futuro'
-    },
-    'investimento': {
-      title: 'Investimento',
-      subtitle: 'Valores e Contratação do Serviço'
-    }
-  };
 
   navItems.forEach(item => {
     item.addEventListener('click', (e) => {
       e.preventDefault();
-      
+
       const targetId = item.getAttribute('data-target');
-      
-      // Update active nav class and aria-selected
+      if (!targetId) return;
+
+      // Update active state on sidebar nav
       navItems.forEach(nav => {
         nav.classList.remove('active');
         nav.setAttribute('aria-selected', 'false');
       });
       item.classList.add('active');
       item.setAttribute('aria-selected', 'true');
-      
-      // Update section headers
-      if (sectionHeaders[targetId]) {
-        sectionTitleDisplay.textContent = sectionHeaders[targetId].title;
-        sectionSubtitleDisplay.textContent = sectionHeaders[targetId].subtitle;
-      }
-      
-      // Deactivate all sections and reset inline display styles
-      sections.forEach(sec => {
-        sec.classList.remove('active');
-        sec.style.opacity = 0;
-        sec.style.display = '';
-      });
-      
-      // Activate target section
-      const activeSection = document.getElementById(targetId);
-      if (activeSection) {
-        activeSection.style.display = '';
-        activeSection.classList.add('active');
-        
-        // Animate Section Fade-In & slide up using Motion
-        animate(
-          activeSection,
-          { opacity: [0, 1], y: [10, 0] },
-          { duration: 0.4, easing: 'ease-out' }
-        );
-      }
-      
-      // Re-trigger chart animation if switching to Power BI
-      if (targetId === 'powerbi') {
-        renderCharts();
-      }
 
-      // Smooth scroll back to top of container
-      document.querySelector('.content-wrapper').scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+      // Update header text
+      const meta = SECTION_META[targetId];
+      if (meta && sectionTitleDisplay) sectionTitleDisplay.textContent = meta.title;
+      if (meta && sectionSubtitleDisplay) sectionSubtitleDisplay.textContent = meta.subtitle;
+
+      // Show section
+      showSections([targetId]);
+
+      // Sync mobile bottom nav active state
+      if (meta) {
+        syncMobileNav(meta.mobileGroup);
+      }
     });
   });
 };
@@ -477,125 +509,92 @@ const triggerConfetti = () => {
   }
 };
 
-// 6. Mobile Bottom Navigation Controller (Interactive Menu from menumobile.txt)
+// Helper: sync mobile bottom nav active button (called by desktop nav too)
+const syncMobileNav = (mobileGroup) => {
+  const mobileMenuItems = document.querySelectorAll('.menu.mobile-nav .menu__item');
+  mobileMenuItems.forEach(btn => {
+    const target = btn.getAttribute('data-target');
+    const isActive = target === mobileGroup;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    const text = btn.querySelector('.menu__text');
+    if (text) text.classList.toggle('active', isActive);
+    if (isActive) {
+      btn.style.setProperty('--lineWidth', text ? `${text.offsetWidth}px` : '0px');
+    } else {
+      btn.style.setProperty('--lineWidth', '0px');
+    }
+  });
+};
+
+// Helper: sync desktop sidebar nav active link (called by mobile nav too)
+const syncDesktopNav = (primarySectionId) => {
+  const navItems = document.querySelectorAll('.nav-item');
+  navItems.forEach(nav => {
+    const isActive = nav.getAttribute('data-target') === primarySectionId;
+    nav.classList.toggle('active', isActive);
+    nav.setAttribute('aria-selected', isActive ? 'true' : 'false');
+  });
+};
+
+// 6. Mobile Bottom Navigation Controller
 const initMobileNavigation = () => {
   const mobileMenuItems = document.querySelectorAll('.menu.mobile-nav .menu__item');
-  const sections = document.querySelectorAll('.content-section');
   const sectionTitleDisplay = document.querySelector('.section-title-display');
+  const sectionSubtitleDisplay = document.querySelector('.section-subtitle-display');
 
-  const updateMobileMenuIndicator = () => {
-    const activeItem = document.querySelector('.menu.mobile-nav .menu__item.active');
-    if (activeItem) {
-      const text = activeItem.querySelector('.menu__text');
-      if (text) {
-        activeItem.style.setProperty('--lineWidth', `${text.offsetWidth}px`);
-      }
-    }
-  };
-
-  const navigateMobile = (targetLabel) => {
-    const headers = {
-      'geral': 'Visão Geral',
-      'modulos': 'Módulos da Plataforma',
-      'graficos': 'Simulador Power BI',
-      'periodo': 'Retorno & Cronograma',
-      'investimento': 'Investimento'
-    };
-
-    if (sectionTitleDisplay && headers[targetLabel]) {
-      sectionTitleDisplay.textContent = headers[targetLabel];
-    }
-
-    let targetSectionIds = [];
-    if (targetLabel === 'geral') {
-      targetSectionIds = ['visao-geral', 'desafios'];
-    } else if (targetLabel === 'modulos') {
-      targetSectionIds = ['modulos'];
-    } else if (targetLabel === 'graficos') {
-      targetSectionIds = ['powerbi'];
-    } else if (targetLabel === 'periodo') {
-      targetSectionIds = ['roi', 'cronograma'];
-    } else if (targetLabel === 'investimento') {
-      targetSectionIds = ['investimento'];
-    }
-
-    // Deactivate all sections and hide them
-    sections.forEach(sec => {
-      sec.classList.remove('active');
-      sec.style.opacity = 0;
-      sec.style.display = 'none';
-    });
-
-    // Activate selected sections
-    targetSectionIds.forEach(id => {
-      const sec = document.getElementById(id);
-      if (sec) {
-        sec.style.display = 'block';
-        sec.classList.add('active');
-        animate(
-          sec,
-          { opacity: [0, 1], y: [10, 0] },
-          { duration: 0.4, easing: 'ease-out' }
-        );
-      }
-    });
-
-    // Re-render charts if switching to Power BI
-    if (targetLabel === 'graficos') {
-      renderCharts();
-    }
-
-    // Scroll wrapper to top
-    document.querySelector('.content-wrapper').scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+  const mobileHeaders = {
+    'geral': { title: 'Visão Geral', subtitle: 'Plataforma Inteligente de Gestão Operacional' },
+    'modulos': { title: 'Módulos da Plataforma', subtitle: 'Explorando os Módulos do Sistema' },
+    'graficos': { title: 'Simulador Power BI', subtitle: 'Acompanhamento Executivo em Tempo Real' },
+    'periodo': { title: 'Retorno & Cronograma', subtitle: 'Viabilidade e Plano de Implantação' },
+    'investimento': { title: 'Investimento', subtitle: 'Valores e Contratação do Serviço' }
   };
 
   mobileMenuItems.forEach(item => {
     item.addEventListener('click', () => {
-      mobileMenuItems.forEach(b => {
-        b.classList.remove('active');
-        const text = b.querySelector('.menu__text');
-        if (text) text.classList.remove('active');
-        b.style.setProperty('--lineWidth', '0px');
-      });
-      item.classList.add('active');
-      const text = item.querySelector('.menu__text');
-      if (text) text.classList.add('active');
-      
-      const target = item.getAttribute('data-target');
-      navigateMobile(target);
-      updateMobileMenuIndicator();
+      const mobileGroup = item.getAttribute('data-target');
+      if (!mobileGroup) return;
+
+      // Update mobile nav active state
+      syncMobileNav(mobileGroup);
+
+      // Update header
+      const header = mobileHeaders[mobileGroup];
+      if (header) {
+        if (sectionTitleDisplay) sectionTitleDisplay.textContent = header.title;
+        if (sectionSubtitleDisplay) sectionSubtitleDisplay.textContent = header.subtitle;
+      }
+
+      // Show sections
+      const sectionIds = MOBILE_GROUP_SECTIONS[mobileGroup] || [];
+      showSections(sectionIds);
+
+      // Sync desktop sidebar nav
+      const primarySection = MOBILE_GROUP_PRIMARY_SECTION[mobileGroup];
+      if (primarySection) syncDesktopNav(primarySection);
     });
   });
 
-  // Handle window resize indicator updates
+  // Handle window resize
   window.addEventListener('resize', () => {
     if (window.innerWidth <= 820) {
-      updateMobileMenuIndicator();
+      syncMobileNav(
+        document.querySelector('.menu.mobile-nav .menu__item.active')?.getAttribute('data-target') || 'geral'
+      );
     }
   });
 
-  // Set initial configuration for mobile load
+  // Initial state: on mobile, ensure only the active mobile group's sections are visible
   if (window.innerWidth <= 820) {
-    sections.forEach(sec => {
-      if (sec.id === 'visao-geral' || sec.id === 'desafios') {
-        sec.style.display = 'block';
-        sec.style.opacity = 1;
-        sec.classList.add('active');
-      } else {
-        sec.style.display = 'none';
-        sec.style.opacity = 0;
-        sec.classList.remove('active');
-      }
-    });
-    
-    if (sectionTitleDisplay) {
-      sectionTitleDisplay.textContent = 'Visão Geral';
+    const activeBtn = document.querySelector('.menu.mobile-nav .menu__item.active');
+    const mobileGroup = activeBtn?.getAttribute('data-target') || 'geral';
+    const sectionIds = MOBILE_GROUP_SECTIONS[mobileGroup] || ['visao-geral'];
+    showSections(sectionIds);
+    if (sectionTitleDisplay && mobileHeaders[mobileGroup]) {
+      sectionTitleDisplay.textContent = mobileHeaders[mobileGroup].title;
     }
-    
-    setTimeout(updateMobileMenuIndicator, 100);
+    setTimeout(() => syncMobileNav(mobileGroup), 100);
   }
 };
 
