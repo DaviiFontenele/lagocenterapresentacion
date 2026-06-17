@@ -7,9 +7,7 @@ on:
   workflow_dispatch: # Permite rodar manualmente pelo painel do GitHub
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write  # Necessario para publicar no branch gh-pages
 
 # Garante que apenas um deploy rode por vez
 concurrency:
@@ -18,9 +16,6 @@ concurrency:
 
 jobs:
   build-and-deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
 
     steps:
@@ -39,14 +34,9 @@ jobs:
       - name: Build do projeto (Vite)
         run: npm run build
 
-      - name: Configurar GitHub Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload do artefato de build
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy para branch gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          path: "./dist"
-
-      - name: Deploy para GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          folder: dist        # Pasta gerada pelo Vite
+          branch: gh-pages    # Branch dedicado para o site publicado
+          clean: true         # Remove arquivos antigos automaticamente
