@@ -21,6 +21,11 @@ const SECTION_META = {
     subtitle: 'Plataforma Inteligente de Gestão Operacional',
     mobileGroup: 'geral'
   },
+  'video-demonstrativo': {
+    title: 'Vídeo Demonstrativo',
+    subtitle: 'Apresentação Prática do Sistema',
+    mobileGroup: 'geral'
+  },
   'desafios': {
     title: 'Desafios & Solução',
     subtitle: 'Ecossistema Integrado NEXUS',
@@ -64,7 +69,7 @@ const MOBILE_GROUP_PRIMARY_SECTION = {
 
 // Mobile group → section IDs to show
 const MOBILE_GROUP_SECTIONS = {
-  'geral': ['visao-geral', 'desafios'],
+  'geral': ['visao-geral', 'video-demonstrativo', 'desafios'],
   'modulos': ['modulos'],
   'graficos': ['powerbi'],
   'periodo': ['roi', 'cronograma'],
@@ -133,6 +138,18 @@ const initNavigation = () => {
       // Sync mobile bottom nav active state
       if (meta) {
         syncMobileNav(meta.mobileGroup);
+      }
+    });
+  });
+
+  // Watch Video CTA handler
+  const watchVideoBtns = document.querySelectorAll('.btn-watch-video');
+  watchVideoBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target') || 'video-demonstrativo';
+      const navItem = document.querySelector(`.nav-item[data-target="${targetId}"]`);
+      if (navItem) {
+        navItem.click();
       }
     });
   });
