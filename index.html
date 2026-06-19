@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="./assets/index-BRxBksij.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-fKZBFw7V.css">
+  <script type="module" crossorigin src="./assets/index-Bt1LfvSU.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BIwybhWa.css">
 </head>
 <body class="dark-theme">
   <div class="app-container">
@@ -24,6 +24,10 @@
         <a href="#visao-geral" class="nav-item active" role="tab" aria-selected="true" aria-controls="visao-geral" id="tab-visao-geral" data-target="visao-geral">
           <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
           Visão Geral
+        </a>
+        <a href="#video-demonstrativo" class="nav-item" role="tab" aria-selected="false" aria-controls="video-demonstrativo" id="tab-video-demonstrativo" data-target="video-demonstrativo">
+          <svg class="nav-icon" viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 16H5V8h9v8z"/></svg>
+          Vídeo Demonstrativo
         </a>
         <a href="#desafios" class="nav-item" role="tab" aria-selected="false" aria-controls="desafios" id="tab-desafios" data-target="desafios">
           <svg class="nav-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
@@ -110,6 +114,19 @@
               <div class="orb"></div>
             </div>
           </div>
+
+          <!-- CTA to Video Demonstrativo -->
+          <div class="video-preview-cta glass-panel" style="margin-bottom: 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 280px;">
+              <span class="badge" style="margin-bottom: 10px;">VÍDEO DEMONSTRATIVO</span>
+              <h4 style="font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin-bottom: 8px;">Veja o NEXUS em Ação</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0;">Assista a uma apresentação rápida do sistema em funcionamento, demonstrando a facilidade de uso para a equipe de campo e gerência.</p>
+            </div>
+            <button class="btn btn-primary btn-watch-video" data-target="video-demonstrativo" style="flex-shrink: 0;">
+              <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: currentColor; margin-right: 4px;"><path d="M8 5v14l11-7z"/></svg>
+              Assistir Vídeo
+            </button>
+          </div>
           
           <h3 class="subsection-title">Resultados Operacionais Esperados</h3>
           <div class="table-container glass-panel">
@@ -161,6 +178,22 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+        </section>
+        
+        <!-- SECTION: VÍDEO DEMONSTRATIVO -->
+        <section id="video-demonstrativo" class="content-section" role="tabpanel" aria-labelledby="tab-video-demonstrativo" tabindex="0">
+          <div class="glass-panel video-section-panel">
+            <div class="video-header text-center">
+              <span class="badge">Apresentação Prática</span>
+              <h3 class="card-title text-accent">Demonstração do Sistema NEXUS</h3>
+              <p class="margin-bottom" style="color: var(--text-muted); max-width: 700px; margin-left: auto; margin-right: auto;">
+                Veja abaixo como funciona o ecossistema integrado do NEXUS na prática. Acompanhe a agilidade no controle de ordens de serviço, checklists digitais e relatórios inteligentes projetados para o Shopping Lago Center.
+              </p>
+            </div>
+            <div class="premium-video-wrapper">
+              <video id="nexus-demo-video" src="./video/VÍDEO DEMONSTRATIVO.mp4" controls autoplay loop muted playsinline></video>
+            </div>
           </div>
         </section>
         
